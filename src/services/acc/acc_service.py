@@ -9,6 +9,8 @@ async def createUser(nuser_data: accs_data.RegistrationData):
     email_test = conn.fetchrow('select * from lampdb_users where email = $1', nuser_data.email)
     if(uname_test or email_test):
         return {'is_ok': False}
+    else:
+        return {'is_ok': True}
 
     conn.close()
     pool.close()
