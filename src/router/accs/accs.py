@@ -5,7 +5,7 @@ from dataModels.accs import accsGlobalDataModels as accs_data
 
 #services
 from services.acc import acc_service
-
+from services.token import token as token_service
 
 router = APIRouter(prefix='/api/accounts')
 
@@ -41,6 +41,19 @@ async def signInUser(user_data: accs_data.SignIn):
     
     if(testSignIn.get('is_ok')):
         response_status['is_ok'] = True
+        
+        jwt_data = {'id': testSignIn.get('user_id'),
+                    'email': testSignIn.get('email'),
+                    'uname': testSignIn.get('uname')}
+
+        res_JWT_pair = token_service.createTokenPair(jwt_data)
+
+        if (res_JWT_pair.get('access_JWT')!=None and res_JWT_pair.get('refresh_JWT')!=None):
+            response_status['jwt_response']=res_JWT_pair
+        else:
+            response_status['is_ok']=False
+            response_status['status_code']=-1
+
     else:
         response_status['is_ok'] = False
         response_status['status_code'] = 4

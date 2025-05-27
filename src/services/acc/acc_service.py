@@ -56,7 +56,7 @@ async def signIn(user_data: accs_data.SignIn):
                 func_return['is_ok']=True
                 func_return['email']=getUserDataDB.get('email')
                 func_return['uname']=getUserDataDB.get('uname')
-                func_return['userid']=getUserDataDB.get('id')
+                func_return['user_id']=getUserDataDB.get('id')
             else:
                 func_return['is_ok']=False
         else:
