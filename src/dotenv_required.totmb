@@ -1,0 +1,6 @@
+required variables ('required by' placed in brackets):
+ACCESS_JWT_SECRET
+REFRESH_JWT_SECRET
+ALGORITHM (for token creation)
+ACCESS_EXPIRE_MINS (for access token expire time)
+REFRESH_EXPIRE_DAYS (for refresh token expire time)

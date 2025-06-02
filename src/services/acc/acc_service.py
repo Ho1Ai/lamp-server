@@ -50,7 +50,7 @@ async def signIn(user_data: accs_data.SignIn):
     try:
         getUserDataDB = await conn.fetchrow('select * from lampdb_users where email = $1', user_data.email) # you can sign in only using email. I did it in order to make it more safe
         if(getUserDataDB):
-            print('existence = True')
+            #print('existence = True')
             passwdTest = bcrypt.checkpw(user_data.passwd.encode('utf-8'), getUserDataDB.get('passwd').encode('utf-8'))
             if(passwdTest):
                 func_return['is_ok']=True
